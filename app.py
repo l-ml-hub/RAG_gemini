@@ -132,7 +132,7 @@ return results
 def generate_answer(query: str, context_chunks: List[Dict], api_key: str) -> str:
 """Generate answer using Google Gemini API."""
 if not context_chunks:
-return “I couldn’t find relevant information in the uploaded documents to answer your question. Please check the documents or upload more relevant materials.”
+return "I couldn’t find relevant information in the uploaded documents to answer your question. Please check the documents or upload more relevant materials."
 
 ```
 # Build context from retrieved chunks
