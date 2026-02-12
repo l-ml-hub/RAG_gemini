@@ -46,20 +46,20 @@ return SentenceTransformer('all-MiniLM-L6-v2')
 def extract_text_from_pdf(file) -> str:
 """Extract text from PDF file."""
 pdf_reader = PyPDF2.PdfReader(file)
-text = “”
+text = ""
 for page in pdf_reader.pages:
-text += page.extract_text() + “\n”
+text += page.extract_text() + "\n"
 return text
 
 def extract_text_from_docx(file) -> str:
 """Extract text from DOCX file."""
 doc = DocxDocument(file)
-text = “\n”.join([paragraph.text for paragraph in doc.paragraphs])
+text = "\n".join([paragraph.text for paragraph in doc.paragraphs])
 return text
 
 def extract_text_from_txt(file) -> str:
 """Extract text from TXT file."""
-return file.read().decode(‘utf-8’)
+return file.read().decode('utf-8')
 
 def process_document(file) -> Tuple[str, str]:
 """Process uploaded document and extract text."""
