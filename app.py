@@ -170,9 +170,9 @@ except Exception as e:
 
 def main():
 st.set_page_config(
-page_title=“RAG Document Q&A”,
-page_icon=“📚”,
-layout=“wide”
+page_title="RAG Document Q&A",
+page_icon="📚",
+layout="wide"
 )
 
 ```
