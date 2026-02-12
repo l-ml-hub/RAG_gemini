@@ -29,19 +29,19 @@ SIMILARITY_THRESHOLD = 0.7
 
 # Initialize session state
 
-if ‘vector_store’ not in st.session_state:
+if 'vector_store' not in st.session_state:
 st.session_state.vector_store = None
-if ‘chunks’ not in st.session_state:
+if 'chunks' not in st.session_state:
 st.session_state.chunks = []
-if ‘doc_metadata’ not in st.session_state:
+if 'doc_metadata' not in st.session_state:
 st.session_state.doc_metadata = []
-if ‘embeddings_model’ not in st.session_state:
+if 'embeddings_model' not in st.session_state:
 st.session_state.embeddings_model = None
 
 @st.cache_resource
 def load_embeddings_model():
 “”“Load the sentence transformer model for embeddings.”””
-return SentenceTransformer(‘all-MiniLM-L6-v2’)
+return SentenceTransformer('all-MiniLM-L6-v2')
 
 def extract_text_from_pdf(file) -> str:
 “”“Extract text from PDF file.”””
