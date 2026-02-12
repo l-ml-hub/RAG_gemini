@@ -156,7 +156,7 @@ Context:
 
 Question: {query}
 
-Answer:”””
+Answer:"""
 
 ```
 try:
