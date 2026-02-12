@@ -170,16 +170,16 @@ def main():
     st.title("📚 RAG Document Q&A System")
     st.markdown("Upload your documents and ask questions. The system will only answer based on the uploaded content.")
 
+    # Try to get API key from secrets first
+    api_key = None
+    try:
+        api_key = st.secrets.get("GOOGLE_API_KEY", None)
+    except:
+        pass
+        
     # Sidebar for configuration and document upload
     with st.sidebar:
         st.header("⚙️ Configuration")
-    
-        # Try to get API key from secrets first, then from user input
-        api_key = None
-        try:
-            api_key = st.secrets.get("GOOGLE_API_KEY", None)
-        except:
-            pass
     
         if not api_key:
             api_key = st.text_input(
