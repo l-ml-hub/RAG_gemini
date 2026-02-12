@@ -40,11 +40,11 @@ if 'embeddings_model' not in st.session_state:
 
 @st.cache_resource
 def load_embeddings_model():
-"""Load the sentence transformer model for embeddings."""
+    """Load the sentence transformer model for embeddings."""
     return SentenceTransformer('all-MiniLM-L6-v2')
 
 def extract_text_from_pdf(file) -> str:
-"""Extract text from PDF file."""
+    """Extract text from PDF file."""
     pdf_reader = PyPDF2.PdfReader(file)
     text = ""
     for page in pdf_reader.pages:
@@ -52,17 +52,17 @@ def extract_text_from_pdf(file) -> str:
     return text
 
 def extract_text_from_docx(file) -> str:
-"""Extract text from DOCX file."""
+    """Extract text from DOCX file."""
     doc = DocxDocument(file)
     text = "\n".join([paragraph.text for paragraph in doc.paragraphs])
     return text
 
 def extract_text_from_txt(file) -> str:
-"""Extract text from TXT file."""
+    """Extract text from TXT file."""
     return file.read().decode('utf-8')
 
 def process_document(file) -> Tuple[str, str]:
-"""Process uploaded document and extract text."""
+    """Process uploaded document and extract text."""
     file_extension = Path(file.name).suffix.lower()
 
     
@@ -79,7 +79,7 @@ def process_document(file) -> Tuple[str, str]:
     
 
 def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> List[str]:
-"""Split text into overlapping chunks."""
+    """Split text into overlapping chunks."""
     words = text.split()
     chunks = []
 
@@ -92,7 +92,7 @@ def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVE
     return chunks
 
 def create_vector_store(chunks: List[str], metadata: List[Dict], model):
-"""Create FAISS vector store from text chunks."""
+    """Create FAISS vector store from text chunks."""
     embeddings = model.encode(chunks, show_progress_bar=True)
 
     # Normalize embeddings for cosine similarity
@@ -107,7 +107,7 @@ def create_vector_store(chunks: List[str], metadata: List[Dict], model):
 
 def search_similar_chunks(query: str, index, chunks: List[str], metadata: List[Dict],
 model, top_k: int = TOP_K_RESULTS) -> List[Dict]:
-"""Search for similar chunks using vector similarity."""
+    """Search for similar chunks using vector similarity."""
     query_embedding = model.encode([query])
     faiss.normalize_L2(query_embedding)
 
@@ -125,7 +125,7 @@ model, top_k: int = TOP_K_RESULTS) -> List[Dict]:
     return results
 
 def generate_answer(query: str, context_chunks: List[Dict], api_key: str) -> str:
-"""Generate answer using Google Gemini API."""
+    """Generate answer using Google Gemini API."""
     if not context_chunks:
         return "I couldn’t find relevant information in the uploaded documents to answer your question. Please check the documents or upload more relevant materials."
 
